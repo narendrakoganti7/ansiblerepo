@@ -1,0 +1,34 @@
+---
+- name: Install httpd
+  hosts: web2
+
+
+  tasks:
+
+  - name: Install nginx
+    yum:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+       - wget
+       - httpd
+       - gcc
+       - vim
+       - curl
+       
+
+  - name: Insert Index Page
+    template:
+      src: index.html
+      dest: /usr/share/nginx/html/index.html
+
+  - name: Start NGiNX
+    service:
+      name: httpd
+      state: started
+
+  - name: cmd for ip
+    command: ifconfig
+    register: cat
+  - debug: var=cat.stdout_lines

@@ -1,0 +1,17 @@
+---
+- name: Install mongodb
+  hosts: web2
+
+
+  tasks:
+  - name: create file
+    command: /usr/bin/touch /etc/yum.repos.d/mongodb.repo 
+
+  - name: line insert
+    blockinfile:
+      dest=/etc/yum.repos.d/mongodb.repo backup=yes
+      content="[MongoDB]
+             name=MongoDB Repository
+             baseurl=http://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+             gpgcheck=0
+             enabled=1"

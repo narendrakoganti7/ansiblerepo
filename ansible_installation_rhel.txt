@@ -1,0 +1,11 @@
+ansible installation
+
+Via Source
+
+git clone git://github.com/ansible/ansible.git --recursive
+cd ./ansible
+git submodule update --init --recursive
+sudo yum install python
+yum install libffi-devel gcc
+sudo yum install python-devel
+sudo make install
